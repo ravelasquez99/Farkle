@@ -11,6 +11,7 @@
 @interface Player : NSObject
 @property NSString *name;
 @property NSInteger score;
+@property BOOL isSelected;
 - (instancetype)initWithName:(NSString *)name;
 
 @end

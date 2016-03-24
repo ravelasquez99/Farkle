@@ -16,6 +16,7 @@
     if (self) {
         self.name = name;
         self.score = 0;
+        self.isSelected = NO;
     }
     return self;
 }
