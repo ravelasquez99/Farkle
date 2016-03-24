@@ -13,6 +13,8 @@
 		D824A5E21CA4940C00AF6801 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D824A5E01CA4940C00AF6801 /* Main.storyboard */; };
 		D824A5E41CA4940C00AF6801 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D824A5E31CA4940C00AF6801 /* Assets.xcassets */; };
 		D824A5E71CA4940C00AF6801 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D824A5E51CA4940C00AF6801 /* LaunchScreen.storyboard */; };
+		D824A5F01CA49AF900AF6801 /* SelectPlayersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D824A5EF1CA49AF900AF6801 /* SelectPlayersViewController.m */; };
+		D824A5F31CA49EA500AF6801 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = D824A5F21CA49EA500AF6801 /* Player.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		D824A5E31CA4940C00AF6801 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D824A5E61CA4940C00AF6801 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D824A5E81CA4940C00AF6801 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D824A5EE1CA49AF900AF6801 /* SelectPlayersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPlayersViewController.h; sourceTree = "<group>"; };
+		D824A5EF1CA49AF900AF6801 /* SelectPlayersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPlayersViewController.m; sourceTree = "<group>"; };
+		D824A5F11CA49EA500AF6801 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		D824A5F21CA49EA500AF6801 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,10 @@
 				D824A5DD1CA4940C00AF6801 /* ViewController.h */,
 				D824A5DE1CA4940C00AF6801 /* ViewController.m */,
 				D824A5E01CA4940C00AF6801 /* Main.storyboard */,
+				D824A5EE1CA49AF900AF6801 /* SelectPlayersViewController.h */,
+				D824A5EF1CA49AF900AF6801 /* SelectPlayersViewController.m */,
+				D824A5F11CA49EA500AF6801 /* Player.h */,
+				D824A5F21CA49EA500AF6801 /* Player.m */,
 				D824A5E31CA4940C00AF6801 /* Assets.xcassets */,
 				D824A5E51CA4940C00AF6801 /* LaunchScreen.storyboard */,
 				D824A5E81CA4940C00AF6801 /* Info.plist */,
@@ -150,8 +160,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D824A5DF1CA4940C00AF6801 /* ViewController.m in Sources */,
+				D824A5F31CA49EA500AF6801 /* Player.m in Sources */,
 				D824A5DC1CA4940C00AF6801 /* AppDelegate.m in Sources */,
 				D824A5D91CA4940C00AF6801 /* main.m in Sources */,
+				D824A5F01CA49AF900AF6801 /* SelectPlayersViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

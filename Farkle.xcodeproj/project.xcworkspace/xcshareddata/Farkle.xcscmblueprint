@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F7813A9C6FEAC474C8B497F6A181157993844270",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "F7813A9C6FEAC474C8B497F6A181157993844270" : 0,
+    "5C72276CC4FE6942AC45F4AD11DCAC589B3A4D24" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "10531311-79FA-4303-974F-F3CC3C419D9F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "F7813A9C6FEAC474C8B497F6A181157993844270" : "Farkle\/",
+    "5C72276CC4FE6942AC45F4AD11DCAC589B3A4D24" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Farkle",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Farkle.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/plugh4\/mm-githubtest.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5C72276CC4FE6942AC45F4AD11DCAC589B3A4D24"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/ravelasquez99\/Farkle.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F7813A9C6FEAC474C8B497F6A181157993844270"
+    }
+  ]
+}
