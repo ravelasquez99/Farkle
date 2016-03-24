@@ -78,6 +78,9 @@
                                     <constraint firstAttribute="height" constant="30" id="Wgw-sE-CNI"/>
                                 </constraints>
                                 <state key="normal" title="Add Player"/>
+                                <connections>
+                                    <action selector="onAddPlayerbuttonPressed:" destination="JCf-u5-DEh" eventType="touchUpInside" id="LeO-hW-C1j"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fw1-Wn-8Hm">
                                 <rect key="frame" x="0.0" y="64" width="600" height="30"/>
@@ -130,6 +133,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="enteredPlayerNameTextField" destination="be6-0J-2XJ" id="5Fq-10-oC9"/>
                         <outlet property="playerListTableView" destination="bNT-SF-Fj8" id="VsO-Xv-cSC"/>
                     </connections>
                 </viewController>

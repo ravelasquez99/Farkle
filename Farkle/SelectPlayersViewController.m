@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *playerListTableView;
 @property NSMutableArray *playerNames;
 @property NSMutableArray *players;
+@property (weak, nonatomic) IBOutlet UITextField *enteredPlayerNameTextField;
 
 @end
 
@@ -36,9 +37,6 @@
         Player *player = [[Player alloc]initWithName:name];
         [self.players addObject:player];
     }
-    
-    
-    
 }
 
 
@@ -58,6 +56,16 @@
     return cell;
 }
 
+- (IBAction)onAddPlayerbuttonPressed:(UIButton *)sender {
+
+    Player *player = [[Player alloc]initWithName: self.enteredPlayerNameTextField.text];
+    [self.players addObject:player];
+    [self.playerListTableView reloadData];
+    [self.enteredPlayerNameTextField resignFirstResponder];
+    
+    self.enteredPlayerNameTextField.text = @"";
+    
+}
 
 
 @end
