@@ -113,7 +113,7 @@
 #pragma Segues
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     GameBoardViewController *destVC = segue.destinationViewController;
-    destVC.playersForGame = [NSMutableArray new];
+    destVC.playersForGame = self.selectedPlayers;
     
 }
 
