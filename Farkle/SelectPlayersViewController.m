@@ -19,6 +19,7 @@
 @property NSMutableArray *selectedPlayers;
 @property NSMutableArray *bgColors;
 @property (weak, nonatomic) IBOutlet UITextField *enteredPlayerNameTextField;
+@property (weak, nonatomic) IBOutlet UIButton *startGamebutton;
 
 @end
 
@@ -36,6 +37,8 @@
     [self createPlayers];
     
     self.selectedPlayers = [NSMutableArray new];
+    
+    [self.startGamebutton setEnabled:NO];
     
     
 }
@@ -101,6 +104,8 @@
     
     
     [self.playerListTableView reloadData];
+    [self checkIfGameCanStart];
+
 }
 
 
@@ -113,7 +118,13 @@
 }
 
 
-
+-(void)checkIfGameCanStart {
+    if (self.selectedPlayers.count > 1 && self.selectedPlayers.count < 11) {
+        [self.startGamebutton setEnabled:YES];
+    } else {
+        [self.startGamebutton setEnabled:NO];
+    }
+}
 
 
 

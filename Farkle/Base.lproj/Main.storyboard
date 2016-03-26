@@ -85,7 +85,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fw1-Wn-8Hm">
                                 <rect key="frame" x="0.0" y="64" width="600" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.2365661453" blue="0.28039223499999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Start Game"/>
                                 <connections>
                                     <segue destination="Gdg-g9-ePa" kind="show" id="S9a-do-7f6"/>
                                 </connections>
@@ -135,6 +135,7 @@
                     <connections>
                         <outlet property="enteredPlayerNameTextField" destination="be6-0J-2XJ" id="5Fq-10-oC9"/>
                         <outlet property="playerListTableView" destination="bNT-SF-Fj8" id="VsO-Xv-cSC"/>
+                        <outlet property="startGamebutton" destination="Fw1-Wn-8Hm" id="Z6S-7b-Mlb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CIw-YK-sgR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -152,7 +153,35 @@
                     <view key="view" contentMode="scaleToFill" id="u8L-xz-nXi">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="33" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bix-s4-EhM">
+                                <rect key="frame" x="0.0" y="64" width="159" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="159" id="rT1-a7-n1Q"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="33" id="3mg-CZ-Jaj">
+                                        <rect key="frame" x="0.0" y="92" width="159" height="33"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3mg-CZ-Jaj" id="2Xf-zE-PSt">
+                                            <rect key="frame" x="0.0" y="0.0" width="159" height="32"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Gdg-g9-ePa" id="5NS-j9-uHN"/>
+                                    <outlet property="delegate" destination="Gdg-g9-ePa" id="WqN-dd-IuZ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aP5-WR-IbW" firstAttribute="top" secondItem="bix-s4-EhM" secondAttribute="bottom" id="QUq-Kl-WIy"/>
+                            <constraint firstItem="bix-s4-EhM" firstAttribute="leading" secondItem="u8L-xz-nXi" secondAttribute="leadingMargin" constant="-20" id="cJo-yd-lEp"/>
+                            <constraint firstItem="bix-s4-EhM" firstAttribute="top" secondItem="ZfM-qD-WKn" secondAttribute="bottom" id="jYm-sz-n90"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ftL-bn-V2I" userLabel="First Responder" sceneMemberID="firstResponder"/>
