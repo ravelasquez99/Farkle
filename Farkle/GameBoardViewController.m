@@ -9,7 +9,11 @@
 #import "GameBoardViewController.h"
 
 @interface GameBoardViewController ()<UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *turnLabel;
 @property (weak, nonatomic) IBOutlet UITableView *playersTableView;
+@property Player *playerUp;
+@property NSUInteger turnCounter;
+
 
 @end
 
@@ -17,9 +21,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    for (Player *player in self.playersForGame) {
-        NSLog(@"%@", player.name);
-    }
+    self.playersTableView.backgroundColor = [UIColor lightGrayColor];
+    
+    self.playerUp = [self.playersForGame objectAtIndex:0];
+    self.turnLabel.text = [NSString stringWithFormat:@"%@'s turn",self.playerUp.name];
+    self.turnLabel.backgroundColor = [UIColor grayColor];
+    
+    //sets turn counter to 0
+    self.turnCounter = 1;
 
 }
 
@@ -33,6 +42,7 @@
     UITableViewCell *cell = [self.playersTableView dequeueReusableCellWithIdentifier:@"PLAYERCELL"];
     Player *player = [self.playersForGame objectAtIndex:indexPath.row];
     cell.textLabel.text = player.name;
+    cell.backgroundColor = [UIColor lightGrayColor];
     return cell;
 }
 
@@ -41,7 +51,26 @@
 }
 
 
+#pragma Game Mechanics
 
+-(void)changeturn {
+    if (self.turnCounter == self.playersForGame.count) {
+        self.turnCounter = 1;
+    } else {
+        self.turnCounter++;
+    }
+    
+    Player *nextPlayerUp = [self.playersForGame objectAtIndex:self.turnCounter-1];
+    self.turnLabel.text = [NSString stringWithFormat:@"%@'s turn",nextPlayerUp.name];
+    [self.playersTableView reloadData];
+    
+    
+}
+- (IBAction)onChangeturnPressed:(UIButton *)sender {
+    [self changeturn];
+}
+
+//add triggering event to call this method
 
 
 @end
