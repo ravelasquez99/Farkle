@@ -141,10 +141,10 @@
             </objects>
             <point key="canvasLocation" x="2026" y="294"/>
         </scene>
-        <!--View Controller-->
+        <!--Game Board View Controller-->
         <scene sceneID="knj-Yg-gG4">
             <objects>
-                <viewController id="Gdg-g9-ePa" sceneMemberID="viewController">
+                <viewController id="Gdg-g9-ePa" customClass="GameBoardViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZfM-qD-WKn"/>
                         <viewControllerLayoutGuide type="bottom" id="aP5-WR-IbW"/>

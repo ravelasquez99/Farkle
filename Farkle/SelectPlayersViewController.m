@@ -8,6 +8,8 @@
 
 #import "SelectPlayersViewController.h"
 #import "Player.h"
+#import "GameBoardViewController.h"
+
 
 
 @interface SelectPlayersViewController ()<UITableViewDataSource, UITableViewDelegate>
@@ -15,18 +17,22 @@
 @property NSMutableArray *playerNames;
 @property NSMutableArray *players;
 @property NSMutableArray *selectedPlayers;
+@property NSMutableArray *bgColors;
 @property (weak, nonatomic) IBOutlet UITextField *enteredPlayerNameTextField;
 
 @end
 
 @implementation SelectPlayersViewController
 
+
+#pragma ViewDidLoad
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.playerListTableView.delegate = self;
     self.playerListTableView.dataSource = self;
     self.playerNames =[NSMutableArray arrayWithArray:@[@"Ricky", @"Michael", @"Jesus Christ"]];
     self.players = [NSMutableArray new];
+
     [self createPlayers];
     
     self.selectedPlayers = [NSMutableArray new];
@@ -45,6 +51,7 @@
 
 
 
+#pragma Cell Setup
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.players.count;
 }
@@ -56,13 +63,17 @@
     cell.textLabel.text = player.name;
     
     if (player.isSelected) {
-        cell.backgroundColor = [UIColor lightGrayColor];
+        cell.backgroundColor = [UIColor blueColor];
+    }else {
+        cell.backgroundColor = [UIColor clearColor];
     }
 
     
     return cell;
 }
 
+
+#pragma Adding players
 - (IBAction)onAddPlayerbuttonPressed:(UIButton *)sender {
 
     Player *player = [[Player alloc]initWithName: self.enteredPlayerNameTextField.text];
@@ -70,29 +81,37 @@
     [self.playerListTableView reloadData];
     [self.enteredPlayerNameTextField  resignFirstResponder];
     
+    
     self.enteredPlayerNameTextField.text = @"";
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     Player *player = [self.players objectAtIndex:indexPath.row];
-    player.isSelected = YES;
-    [self.selectedPlayers addObject:player];
-//    NSLog(@"%@", self.selectedPlayers);
+    
+    
+    if (player.isSelected) {
+        player.isSelected = NO;
+        [self.selectedPlayers removeObject:player];
+        
+    } else {
+        player.isSelected = YES;
+        [self.selectedPlayers addObject:player];
+    }
+    
+    
+    [self.playerListTableView reloadData];
+}
+
+
+
+#pragma Segues
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    GameBoardViewController *destVC = segue.destinationViewController;
+    destVC.playersForGame = [NSMutableArray new];
     
 }
 
--(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    Player *player = [self.players objectAtIndex:indexPath.row];
-    player.isSelected = NO;
-    [self.selectedPlayers removeObjectIdenticalTo:player];
-    
-    for (Player *player in self.selectedPlayers) {
-            NSLog(@"%@", player.name);
-    }
-    
-}
 
 
 
