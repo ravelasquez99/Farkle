@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *playersTableView;
 @property Player *playerUp;
 @property NSUInteger turnCounter;
+@property (weak, nonatomic) IBOutlet UIButton *keepScoreButton;
 
 
 @end
@@ -27,8 +28,9 @@
     self.turnLabel.text = [NSString stringWithFormat:@"%@'s turn",self.playerUp.name];
     self.turnLabel.backgroundColor = [UIColor grayColor];
     
-    //sets turn counter to 0
+    //initial game setup
     self.turnCounter = 1;
+    [self.keepScoreButton setEnabled:NO];
 
 }
 

@@ -43,6 +43,22 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    
+  
+    
+    self.selectedPlayers = [NSMutableArray new];
+    
+    for (Player *player in self.players) {
+        player.isSelected = NO;
+    }
+    
+    [self.startGamebutton setEnabled:NO];
+    
+    [self.playerListTableView reloadData];
+    
+}
+
 
 -(void)createPlayers {
     for (NSString *name in self.playerNames) {
