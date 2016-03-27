@@ -158,13 +158,13 @@
     for (int i = 0; i <=5; i++) {
         int randomNumber = (arc4random_uniform (6) +1);
         number = [NSNumber numberWithInt:randomNumber];
-        NSLog(@"%i turn brings the number %@",i, number);
-    
+        NSLog(@"%i",randomNumber);
         [self.rolledNumbers addObject:number];
         Dice2 *die = [self.diceArray objectAtIndex:i];
-        if (die.isSelected) {
+        if (die.isSelected > 0) {
         } else {
             die.scoreRolled = randomNumber;
+            //NSLog(@"%i", i);
         }
         
     
@@ -182,13 +182,13 @@
     if (self.rollCount >1) {
     for (int i = 0; i <=5; i++) {
         NSNumber *number = [self.rolledNumbers objectAtIndex:i];
+        
         Dice2 *dice = [self.diceArray objectAtIndex:i];
         
-        if (dice.isSelected) {
+        if (dice.isSelected == 1) {
+            NSString *selectedImageName = [NSString stringWithFormat:@"saved%@", number];
+            dice.selectedImage= [UIImage imageNamed:selectedImageName];
         }else {
-            
-        NSString *selectedImageName = [NSString stringWithFormat:@"saved%@", number];
-        dice.selectedImage= [UIImage imageNamed:selectedImageName];
         
         NSString *rolledImageName = [NSString stringWithFormat:@"%@", number];
         dice.rolledImage= [UIImage imageNamed:rolledImageName];
@@ -209,13 +209,13 @@
             }
         }
     
-    //creates the die images based on the image value of the dice
+    //creates the die images based on is selected and the image value of the dice
     
     for (int i =0; i <= self.diceArray.count -1; i++) {
         Dice2 *die = [self.diceArray objectAtIndex:i];
         UIImageView *diceImage = [self.diceImages objectAtIndex:i];
         
-        if (die.isSelected) {
+        if (die.isSelected > 0) {
             diceImage.image = die.selectedImage;
         } else {
             diceImage.image = die.rolledImage;
@@ -228,7 +228,7 @@
     for (Dice2 *die in self.diceArray) {
         NSNumber *dieNumber = [NSNumber numberWithInt:die.scoreRolled];
         if (dieNumber == number) {
-            die.isSelected = YES;
+            die.isSelected = die.isSelected + 1;
         }
     }
 }
