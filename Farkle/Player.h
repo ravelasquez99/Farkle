@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SelectPlayersViewController.h"
 
 @interface Player : NSObject
 @property NSString *name;
-@property NSInteger score;
+@property int score;
 @property BOOL isSelected;
 - (instancetype)initWithName:(NSString *)name;
 

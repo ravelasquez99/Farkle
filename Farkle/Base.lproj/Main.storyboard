@@ -334,6 +334,7 @@
                         <outlet property="dice6" destination="d8A-Fu-8je" id="BKn-6G-N8d"/>
                         <outlet property="keepScoreButton" destination="xTB-B6-Szu" id="TtC-3Q-LIZ"/>
                         <outlet property="playersTableView" destination="bix-s4-EhM" id="Qbu-Vb-TrN"/>
+                        <outlet property="scoreLabel" destination="eoo-KR-THS" id="YDM-OX-ncH"/>
                         <outlet property="turnLabel" destination="uY5-xs-uzv" id="u5J-l3-75N"/>
                     </connections>
                 </viewController>
