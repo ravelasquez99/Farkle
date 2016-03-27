@@ -1,15 +1,16 @@
 //
-//  Dice.h
+//  Dice2.h
 //  Farkle
 //
-//  Created by Richard Velazquez on 3/26/16.
+//  Created by Richard Velazquez on 3/27/16.
 //  Copyright © 2016 Richard Velazquez. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "GameBoardViewController.h"
 
-@interface Dice : NSObject
+
+@interface Dice2 : NSObject
 @property UIImage *rolledImage;
 @property UIImage *selectedImage;
 @property int placeOnScreen;

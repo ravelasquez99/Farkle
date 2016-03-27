@@ -7,7 +7,7 @@
 //
 
 #import "GameBoardViewController.h"
-#import "Dice.h"
+#import "Dice2.h"
 
 
 #pragma Properties
@@ -39,7 +39,8 @@
 @property int diceAbleToRoll;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property NSMutableArray *diceWithScores;
-@property NSMutableArray *selectedDiceArray;
+@property int rollCount;
+@property NSMutableArray *diceImages;
 
 
 @end
@@ -62,7 +63,8 @@
     self.diceArray = [NSMutableArray new];
     [self createDice];
     self.diceAbleToRoll = 6;//sets the initial setting to 6. when a turn change happens this will be reset to 6
-    self.selectedDiceArray = [NSMutableArray new];
+    self.rollCount = 0;
+    self.diceImages = [NSMutableArray arrayWithObjects:self.dice1,self.dice2, self.dice3, self.dice4, self.dice5, self.dice6, nil];
 }
 
 //creates the initial dice array
@@ -73,7 +75,7 @@
         UIImage *defaultImage = [UIImage imageNamed:defaultImageName];
         UIImage *selectedImage = [UIImage imageNamed:selectedImageName];
         
-        Dice *dice = [[Dice alloc]initWithDefaultImage:defaultImage selectedImage:selectedImage andPlaceOnScreen:i];
+        Dice2 *dice = [[Dice2 alloc]initWithDefaultImage:defaultImage selectedImage:selectedImage andPlaceOnScreen:i];
         [self.diceArray addObject:dice];
     }
 
@@ -89,8 +91,9 @@
     //creates a temporary player object
     Player *player = [self.playersForGame objectAtIndex:indexPath.row];
     
-    //sets the text to the players name
+    //sets the text to the players name and subtitle to his/her score
     cell.textLabel.text = player.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Score: %i",player.score];
     
     //sets backround color for the cells
     cell.backgroundColor = [UIColor lightGrayColor];
@@ -107,151 +110,131 @@
 
 
 -(void)changeturn {
+    
     //if you reach the end of the circle reset it to one
     if (self.playerTurnInArrayCounter == self.playersForGame.count) {
         self.playerTurnInArrayCounter = 1;
     } else {
         self.playerTurnInArrayCounter++;
     }
-    //says which player is next
-    Player *nextPlayerUp = [self.playersForGame objectAtIndex:self.playerTurnInArrayCounter-1];
-    self.turnLabel.text = [NSString stringWithFormat:@"%@'s turn",nextPlayerUp.name];
+    //says which player is up
+    self.playerUp = [self.playersForGame objectAtIndex:self.playerTurnInArrayCounter-1];
+    self.turnLabel.text = [NSString stringWithFormat:@"%@'s turn",self.playerUp.name];
     
     //reloads the table view data with the scores. (not implemented yet)
     [self.playersTableView reloadData];
     
+    
     //resets the dice available
     self.diceAbleToRoll = 6;
     self.rollScore = 0;
-    self.selectedDiceArray = [NSMutableArray new];
 
 
     
     self.scoreLabel.text = [NSString stringWithFormat:@"Score to add:"];
+    self.rollCount = 0;
     
     
 }
 
 //triger from the button being pressed
-- (IBAction)onChangeturnPressed:(UIButton *)sender {
+- (IBAction)onKeepScoreButtenPressed:(UIButton *)sender {
+    self.playerUp.score = self.playerUp.score + self.rollScore;
     [self changeturn];
 }
-
 
 //code to run when the roll dice is pressed
 - (IBAction)onRolldicePressed:(UIButton *)sender {
     
+    NSLog(@"THIS IS A NEW ROLL");
     self.rollScore = 0;
+    self.rollCount = self.rollCount + 1;
     
     self.rolledNumbers = [NSMutableArray new];
     NSNumber *number = [NSNumber new];
+    
     
     //creates an array of random numbers and adds them to rolled numbers
     for (int i = 0; i <=5; i++) {
         int randomNumber = (arc4random_uniform (6) +1);
         number = [NSNumber numberWithInt:randomNumber];
+        NSLog(@"%i turn brings the number %@",i, number);
+    
         [self.rolledNumbers addObject:number];
-        NSLog(@"%i is the %i random number",randomNumber, i);
-        
-        Dice *dice = [self.diceArray objectAtIndex:i];
-        if (dice.isSelected) {
+        Dice2 *die = [self.diceArray objectAtIndex:i];
+        if (die.isSelected) {
         } else {
-        dice.scoreRolled = randomNumber;
+            die.scoreRolled = randomNumber;
+        }
+        
+    
+    }
+    //sets the "score of the round"
+    self.rollScore = [self ScoreToAdd];
+    if (self.rollScore == 0) {
+        self.scoreLabel.text = @"FARKLE!";
+    } else {
+        self.scoreLabel.text = [NSString stringWithFormat:@"Score to add: %i",self.rollScore];
+        [self.keepScoreButton setEnabled:YES];
+    }
+    
+    //created image Value for the dice objects
+    if (self.rollCount >1) {
+    for (int i = 0; i <=5; i++) {
+        NSNumber *number = [self.rolledNumbers objectAtIndex:i];
+        Dice2 *dice = [self.diceArray objectAtIndex:i];
+        
+        if (dice.isSelected) {
+        }else {
+            
+        NSString *selectedImageName = [NSString stringWithFormat:@"saved%@", number];
+        dice.selectedImage= [UIImage imageNamed:selectedImageName];
+        
+        NSString *rolledImageName = [NSString stringWithFormat:@"%@", number];
+        dice.rolledImage= [UIImage imageNamed:rolledImageName];
+        }
+        
+        
+    }}else if (self.rollCount == 1) {
+        for (int i = 0; i <=5; i++) {
+            
+            NSNumber *number = [self.rolledNumbers objectAtIndex:i];
+            Dice2 *dice = [self.diceArray objectAtIndex:i];
+            
+            NSString *selectedImageName = [NSString stringWithFormat:@"saved%@", number];
+            dice.selectedImage= [UIImage imageNamed:selectedImageName];
+            
+            NSString *rolledImageName = [NSString stringWithFormat:@"%@", number];
+            dice.rolledImage= [UIImage imageNamed:rolledImageName];
+            }
+        }
+    
+    //creates the die images based on the image value of the dice
+    
+    for (int i =0; i <= self.diceArray.count -1; i++) {
+        Dice2 *die = [self.diceArray objectAtIndex:i];
+        UIImageView *diceImage = [self.diceImages objectAtIndex:i];
+        
+        if (die.isSelected) {
+            diceImage.image = die.selectedImage;
+        } else {
+            diceImage.image = die.rolledImage;
         }
     }
-    
-    
-    self.rollScore = [self ScoreToAdd];
-    self.scoreLabel.text = [NSString stringWithFormat:@"Score to add: %i",self.rollScore];
-    if (self.rollScore == 0) {
-        self.scoreLabel.text = @"Farcle!";
-    }
-    
-    self.diceWithScores = [NSMutableArray new];
-    
-    //creates the die images
-    
-    Dice *firstDice = [self.diceArray objectAtIndex:0];
-    if (firstDice.isSelected) {
-        NSLog(@"The first dice was selected");
-        NSNumber *number = [NSNumber numberWithInt:firstDice.scoreRolled];
-        NSString *dieOneImageName = [NSString stringWithFormat:@"saved%@", number];
-        self.dice1.image = [UIImage imageNamed:dieOneImageName];
-    }else {
-        NSNumber *numberOne = [self.rolledNumbers objectAtIndex:0];
-    NSString *dieOneImageName = [NSString stringWithFormat:@"%@", numberOne];
-    self.dice1.image = [UIImage imageNamed:dieOneImageName];
-    }
-    
-    
-    Dice *secondDice = [self.diceArray objectAtIndex:1];
-    if (secondDice.isSelected) {
-        NSLog(@"The second dice was selected");
-        NSNumber *number = [NSNumber numberWithInt:secondDice.scoreRolled];
-        NSString *dieTwoImageName = [NSString stringWithFormat:@"saved%@", number];
-        self.dice2.image = [UIImage imageNamed:dieTwoImageName];
-    }else {
-        NSNumber *number = [self.rolledNumbers objectAtIndex:1];
-        NSString *dieImageName = [NSString stringWithFormat:@"%@", number];
-        self.dice1.image = [UIImage imageNamed:dieImageName];
-    }
-    
-    
-    Dice *thirdDice = [self.diceArray objectAtIndex:2];
-    if (thirdDice.isSelected) {
-        NSLog(@"The third dice was selected");
-        NSNumber *number = [NSNumber numberWithInt:thirdDice.scoreRolled];
-        NSString *dieName = [NSString stringWithFormat:@"saved%@", number];
-        self.dice3.image = [UIImage imageNamed:dieName];
-    }else {
-        NSNumber *number = [self.rolledNumbers objectAtIndex:2];
-        NSString *dieImageName = [NSString stringWithFormat:@"%@", number];
-        self.dice3.image = [UIImage imageNamed:dieImageName];
-    }
-    
-    Dice *fourthDice = [self.diceArray objectAtIndex:3];
-    if (fourthDice.isSelected) {
-        NSLog(@"The fourth dice was selected");
-        NSNumber *number = [NSNumber numberWithInt:fourthDice.scoreRolled];
-        NSString *dieName = [NSString stringWithFormat:@"saved%@", number];
-        self.dice4.image = [UIImage imageNamed:dieName];
-    }else {
-        NSNumber *number = [self.rolledNumbers objectAtIndex:3];
-        NSString *dieImageName = [NSString stringWithFormat:@"%@", number];
-        self.dice4.image = [UIImage imageNamed:dieImageName];
-    }
 
-    
-    
-    Dice *fifthDice = [self.diceArray objectAtIndex:4];
-    if (fifthDice.isSelected) {
-        NSLog(@"The fifth dice was selected");
-        NSNumber *number = [NSNumber numberWithInt:fifthDice.scoreRolled];
-        NSString *dieName = [NSString stringWithFormat:@"saved%@", number];
-        self.dice5.image = [UIImage imageNamed:dieName];
-    }else {
-        NSNumber *number = [self.rolledNumbers objectAtIndex:4];
-        NSString *dieImageName = [NSString stringWithFormat:@"%@", number];
-        self.dice5.image = [UIImage imageNamed:dieImageName];
-    }
-
-    
-    
-    Dice *sixthDice = [self.diceArray objectAtIndex:5];
-    if (sixthDice.isSelected) {
-        NSLog(@"The sixth dice was selected");
-        NSNumber *number = [NSNumber numberWithInt:sixthDice.scoreRolled];
-        NSString *dieName = [NSString stringWithFormat:@"saved%@", number];
-        self.dice6.image = [UIImage imageNamed:dieName];
-    }else {
-        NSNumber *number = [self.rolledNumbers objectAtIndex:5];
-        NSString *dieImageName = [NSString stringWithFormat:@"%@", number];
-        self.dice6.image = [UIImage imageNamed:dieImageName];
-    }
-
-    
-    
 }
+
+-(void)checkForDieinRolledNumbersWithNSNumber:(NSNumber *)number {
+    for (Dice2 *die in self.diceArray) {
+        NSNumber *dieNumber = [NSNumber numberWithInt:die.scoreRolled];
+        if (dieNumber == number) {
+            die.isSelected = YES;
+        }
+    }
+}
+
+
+
 
 //adds the scores from all the checks
 -(int)ScoreToAdd {
@@ -282,11 +265,7 @@
     
     int finalScore = oneScore + twoScore + threeScore + fourScore + fiveScore + sixScore;
     
-    if (finalScore == 0) {
-        self.scoreLabel.text = @"FARKLE!";
-    } else {
-        [self.keepScoreButton setEnabled:YES];
-    }
+    
     return finalScore;
 }
 
@@ -294,7 +273,8 @@
     int numberToCheck = 1;
     int countOfOnes = 0;
     
-    for (Dice *die in self.diceArray) {
+    
+    for (Dice2 *die in self.diceArray) {
         if (die.scoreRolled ==  numberToCheck) {
             countOfOnes = countOfOnes + 1;
         }else {}
@@ -330,7 +310,7 @@
     int count = 0;
 
     
-    for (Dice *die in self.diceArray) {
+    for (Dice2 *die in self.diceArray) {
         if (die.scoreRolled ==  numberToCheck) {
             count = count + 1;
         }else {}
@@ -361,7 +341,7 @@
     int numberToCheck = 3;
     int count = 0;
 
-    for (Dice *die in self.diceArray) {
+    for (Dice2 *die in self.diceArray) {
         if (die.scoreRolled ==  numberToCheck) {
             count = count + 1;
         }else {}
@@ -392,7 +372,7 @@
     int numberToCheck = 4;
     int count = 0;
     
-    for (Dice *die in self.diceArray) {
+    for (Dice2 *die in self.diceArray) {
         if (die.scoreRolled ==  numberToCheck) {
             count = count + 1;
         }else {}
@@ -423,7 +403,7 @@
     int numberToCheck = 5;
     int count = 0;
     
-    for (Dice *die in self.diceArray) {
+    for (Dice2 *die in self.diceArray) {
         if (die.scoreRolled ==  numberToCheck) {
             count = count + 1;
         }else {}
@@ -456,7 +436,7 @@
     int numberToCheck = 6;
     int count = 0;
     
-    for (Dice *die in self.diceArray) {
+    for (Dice2 *die in self.diceArray) {
         if (die.scoreRolled ==  numberToCheck) {
             count = count + 1;
         }else {}
@@ -489,17 +469,7 @@
     //going to take in some sort of argument. deselect the dice and reload the images
 }
 
--(void)checkForDieinRolledNumbersWithNSNumber:(NSNumber *)number {
-    for (Dice *die in self.diceArray) {
-        NSNumber *dieNumber = [NSNumber numberWithInt:die.scoreRolled];
-        if (dieNumber == number) {
-            die.isSelected = YES;
-            [self.selectedDiceArray addObject:die];
-        }
-    }
-    
-    
-}
+
 
 
 @end

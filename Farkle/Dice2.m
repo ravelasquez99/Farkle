@@ -1,15 +1,14 @@
 //
-//  Dice.m
+//  Dice2.m
 //  Farkle
 //
-//  Created by Richard Velazquez on 3/26/16.
+//  Created by Richard Velazquez on 3/27/16.
 //  Copyright © 2016 Richard Velazquez. All rights reserved.
 //
 
-#import "Dice.h"
+#import "Dice2.h"
 
-@implementation Dice
-
+@implementation Dice2
 - (instancetype)initWithDefaultImage:(UIImage *)defaultImage selectedImage:(UIImage *)selectedImage andPlaceOnScreen:(int) placeOnScreen
 {
     self = [super init];
@@ -23,6 +22,5 @@
     }
     return self;
 }
-
 
 @end
