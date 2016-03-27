@@ -18,6 +18,7 @@
         self.selectedImage = selectedImage;
         self.placeOnScreen = placeOnScreen;
         self.scoreRolled = 0;
+        self.isSelected = NO;
         
     }
     return self;

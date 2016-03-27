@@ -38,6 +38,7 @@
 @property NSMutableArray *rolledNumbers; //array used to collect the results of the dice roll
 @property int diceAbleToRoll;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property NSMutableArray *diceWithScores;
 
 
 
@@ -121,6 +122,8 @@
     
     //resets the dice available
     self.diceAbleToRoll = 6;
+    self.rollScore = 0;
+
     
     self.scoreLabel.text = [NSString stringWithFormat:@"Score to add:"];
     
@@ -140,7 +143,7 @@
     NSNumber *number = [NSNumber new];
     
     //creates an array of random numbers and adds them to rolled numbers
-    for (int i = 0; i <=self.diceAbleToRoll-1; i++) {
+    for (int i = 0; i <=self.diceAbleToRoll -1; i++) {
         int randomNumber = (arc4random_uniform (self.diceAbleToRoll) +1);
         number = [NSNumber numberWithInt:randomNumber];
         [self.rolledNumbers addObject:number];
@@ -149,16 +152,35 @@
         dice.scoreRolled = randomNumber;
     }
     
+    
+    self.rollScore = [self ScoreToAdd];
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score to add: %i",self.rollScore];
+    
+    
+    
+    
+    self.diceWithScores = [NSMutableArray new];
+    
     //creates the die images
-    NSNumber *numberOne = [self.rolledNumbers objectAtIndex:0];
+    
+    Dice *firstDice = [self.diceArray objectAtIndex:0];
+    if (firstDice.isSelected) {
+        NSNumber *number = [NSNumber numberWithInt:firstDice.scoreRolled];
+        NSString *dieOneImageName = [NSString stringWithFormat:@"saved%@", number];
+        self.dice1.image = [UIImage imageNamed:dieOneImageName];
+        [self.diceArray removeObject:firstDice];
+        self.diceAbleToRoll = self.diceAbleToRoll - 1;
+    }else {
+        NSNumber *numberOne = [self.rolledNumbers objectAtIndex:0];
     NSString *dieOneImageName = [NSString stringWithFormat:@"%@", numberOne];
     self.dice1.image = [UIImage imageNamed:dieOneImageName];
+    }
     
     
     NSNumber *numberTwo = [self.rolledNumbers objectAtIndex:1];
     NSString *dieTwoImageName = [NSString stringWithFormat:@"%@", numberTwo];
     self.dice2.image = [UIImage imageNamed:dieTwoImageName];
-
+    
     
     NSNumber *numberThree = [self.rolledNumbers objectAtIndex:2];
     NSString *dieThreeImageName = [NSString stringWithFormat:@"%@", numberThree];
@@ -167,23 +189,17 @@
     NSNumber *numberFour = [self.rolledNumbers objectAtIndex:3];
     NSString *dieFourImageName = [NSString stringWithFormat:@"%@", numberFour];
     self.dice4.image = [UIImage imageNamed:dieFourImageName];
-
+    
     
     NSNumber *numberFive = [self.rolledNumbers objectAtIndex:4];
     NSString *dieFiveImageName = [NSString stringWithFormat:@"%@", numberFive];
     self.dice5.image = [UIImage imageNamed:dieFiveImageName];
-
+    
     
     NSNumber *numberSix = [self.rolledNumbers objectAtIndex:5];
     NSString *dieSixImageName = [NSString stringWithFormat:@"%@", numberSix];
     self.dice6.image = [UIImage imageNamed:dieSixImageName];
     
-    self.rollScore = [self ScoreToAdd];
-    self.scoreLabel.text = [NSString stringWithFormat:@"Score to add: %i",self.rollScore];
-    
-    
-    //set roll score back to 0 for next turn
-    self.rollScore = 0;
     
 }
 
@@ -216,22 +232,30 @@
         }else {}
     }
     
+    NSNumber *number = [NSNumber numberWithInt:numberToCheck];
+    
     int tripleScore = 1000;
     
     if (countOfOnes > 0 && countOfOnes <3) {
         int scoreToAdd = countOfOnes * 100;
+        [self checkForDieinRolledNumbersWithNSNumber:number];
         return scoreToAdd;
+
     } else if (countOfOnes == 3) {
         int scoreToAdd = tripleScore;
+        [self checkForDieinRolledNumbersWithNSNumber:number];
         return scoreToAdd;
     }else if (countOfOnes == 4){ // * 2
         int scoreToAdd = tripleScore * 2;
+        [self checkForDieinRolledNumbersWithNSNumber:number];
         return scoreToAdd;
     }else if (countOfOnes == 5){ // * 4
         int scoreToAdd = tripleScore * 4;
+        [self checkForDieinRolledNumbersWithNSNumber:number];
         return scoreToAdd;
     }else if (countOfOnes == 6){// * 8
         int scoreToAdd = tripleScore * 8;
+        [self checkForDieinRolledNumbersWithNSNumber:number];
         return scoreToAdd;
     }else {
         return 0;
@@ -274,6 +298,8 @@
     int numberToCheck = 3;
     int count = 0;
     
+
+    
     for (Dice *die in self.diceArray) {
         if (die.scoreRolled ==  numberToCheck) {
             count = count + 1;
@@ -297,6 +323,7 @@
     }else {
         return 0;
     }
+    
     
 }
 
@@ -401,7 +428,16 @@
     //going to take in some sort of argument. deselect the dice and reload the images
 }
 
-
+-(void)checkForDieinRolledNumbersWithNSNumber:(NSNumber *)number {
+    for (Dice *die in self.diceArray) {
+        NSNumber *dieNumber = [NSNumber numberWithInt:die.scoreRolled];
+        if (dieNumber == number) {
+            die.isSelected = YES;
+        }
+    }
+    
+    
+}
 
 
 @end

@@ -14,6 +14,7 @@
 @property UIImage *selectedImage;
 @property int placeOnScreen;
 @property int scoreRolled;
+@property BOOL isSelected;
 
 - (instancetype)initWithDefaultImage:(UIImage *)defaultImage selectedImage:(UIImage *)selectedImage andPlaceOnScreen:(int) placeOnScreen;
 
