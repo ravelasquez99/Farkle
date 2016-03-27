@@ -45,8 +45,6 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     
-  
-    
     self.selectedPlayers = [NSMutableArray new];
     
     for (Player *player in self.players) {
@@ -54,7 +52,6 @@
     }
     
     [self.startGamebutton setEnabled:NO];
-    
     [self.playerListTableView reloadData];
     
 }

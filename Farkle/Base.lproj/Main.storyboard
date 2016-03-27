@@ -194,12 +194,26 @@
                                     <outlet property="delegate" destination="Gdg-g9-ePa" id="WqN-dd-IuZ"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KbF-GW-awC">
+                                <rect key="frame" x="159" y="64" width="85" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.272049129175714" blue="0.064327543602805237" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="hdP-54-AFF"/>
+                                </constraints>
+                                <state key="normal" title="Change turn"/>
+                                <connections>
+                                    <action selector="onChangeturnPressed:" destination="Gdg-g9-ePa" eventType="touchUpInside" id="HJE-w4-opB"/>
+                                </connections>
+                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="P93-MW-dhD">
                                 <rect key="frame" x="231" y="540" width="300" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="isS-wb-Wcd">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="30"/>
                                         <state key="normal" title="Roll Dic"/>
+                                        <connections>
+                                            <action selector="onRolldicePressed:" destination="Gdg-g9-ePa" eventType="touchUpInside" id="7n4-Eq-Ygz"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xTB-B6-Szu">
                                         <rect key="frame" x="150" y="0.0" width="150" height="30"/>
@@ -220,59 +234,54 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screen Shot 2016-03-26 at 1.26.05 PM" translatesAutoresizingMaskIntoConstraints="NO" id="1bN-rB-gJL">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="1bN-rB-gJL">
                                 <rect key="frame" x="251" y="94" width="80" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="JED-Tm-ztp"/>
                                     <constraint firstAttribute="height" constant="80" id="fKw-eR-0gb"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screen Shot 2016-03-26 at 1.26.05 PM" translatesAutoresizingMaskIntoConstraints="NO" id="ZKL-rN-Rp9">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2" translatesAutoresizingMaskIntoConstraints="NO" id="ZKL-rN-Rp9">
                                 <rect key="frame" x="389" y="94" width="80" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="6R3-AR-OBl"/>
                                     <constraint firstAttribute="width" constant="80" id="E8v-Jh-NY2"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screen Shot 2016-03-26 at 1.26.05 PM" translatesAutoresizingMaskIntoConstraints="NO" id="vVS-5o-AHl">
-                                <rect key="frame" x="511" y="94" width="80" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="DPt-Kl-8Qz"/>
-                                    <constraint firstAttribute="height" constant="80" id="fCG-Tz-8be"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screen Shot 2016-03-26 at 1.26.05 PM" translatesAutoresizingMaskIntoConstraints="NO" id="vHK-NZ-h4Q">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="4" translatesAutoresizingMaskIntoConstraints="NO" id="vHK-NZ-h4Q">
                                 <rect key="frame" x="251" y="350" width="80" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="9LO-hR-EZ0"/>
                                     <constraint firstAttribute="height" constant="80" id="dIO-VU-c46"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screen Shot 2016-03-26 at 1.26.05 PM" translatesAutoresizingMaskIntoConstraints="NO" id="SCV-32-4KG">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5" translatesAutoresizingMaskIntoConstraints="NO" id="SCV-32-4KG">
                                 <rect key="frame" x="389" y="350" width="80" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="Uhn-fd-rK9"/>
                                     <constraint firstAttribute="height" constant="80" id="bKe-Fc-Nqt"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screen Shot 2016-03-26 at 1.26.05 PM" translatesAutoresizingMaskIntoConstraints="NO" id="d8A-Fu-8je">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="6" translatesAutoresizingMaskIntoConstraints="NO" id="d8A-Fu-8je">
                                 <rect key="frame" x="511" y="350" width="80" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="hfx-QQ-fj3"/>
                                     <constraint firstAttribute="height" constant="80" id="q1L-8I-DhZ"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KbF-GW-awC">
-                                <rect key="frame" x="159" y="64" width="85" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.272049129175714" blue="0.064327543602805237" alpha="1" colorSpace="calibratedRGB"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3" translatesAutoresizingMaskIntoConstraints="NO" id="vVS-5o-AHl">
+                                <rect key="frame" x="511" y="94" width="80" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="hdP-54-AFF"/>
+                                    <constraint firstAttribute="width" constant="80" id="DPt-Kl-8Qz"/>
+                                    <constraint firstAttribute="height" constant="80" id="fCG-Tz-8be"/>
                                 </constraints>
-                                <state key="normal" title="Change turn"/>
-                                <connections>
-                                    <action selector="onChangeturnPressed:" destination="Gdg-g9-ePa" eventType="touchUpInside" id="HJE-w4-opB"/>
-                                </connections>
-                            </button>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -317,7 +326,13 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="keepScoreButton" destination="xTB-B6-Szu" id="mc0-eu-4v7"/>
+                        <outlet property="dice1" destination="1bN-rB-gJL" id="pR5-QS-dne"/>
+                        <outlet property="dice2" destination="ZKL-rN-Rp9" id="aZf-jD-jGn"/>
+                        <outlet property="dice3" destination="vVS-5o-AHl" id="6to-jy-I2i"/>
+                        <outlet property="dice4" destination="vHK-NZ-h4Q" id="sQV-wL-hPr"/>
+                        <outlet property="dice5" destination="SCV-32-4KG" id="aqZ-16-cMg"/>
+                        <outlet property="dice6" destination="d8A-Fu-8je" id="BKn-6G-N8d"/>
+                        <outlet property="keepScoreButton" destination="xTB-B6-Szu" id="TtC-3Q-LIZ"/>
                         <outlet property="playersTableView" destination="bix-s4-EhM" id="Qbu-Vb-TrN"/>
                         <outlet property="turnLabel" destination="uY5-xs-uzv" id="u5J-l3-75N"/>
                     </connections>
@@ -346,6 +361,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="1" width="230" height="230"/>
+        <image name="2" width="230" height="230"/>
+        <image name="3" width="230" height="230"/>
+        <image name="4" width="230" height="230"/>
+        <image name="5" width="230" height="229"/>
+        <image name="6" width="230" height="230"/>
         <image name="Screen Shot 2016-03-26 at 1.26.05 PM" width="247" height="97"/>
         <image name="table" width="1552" height="1415"/>
     </resources>

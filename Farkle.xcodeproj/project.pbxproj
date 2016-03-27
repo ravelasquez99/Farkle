@@ -16,6 +16,7 @@
 		D824A5F01CA49AF900AF6801 /* SelectPlayersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D824A5EF1CA49AF900AF6801 /* SelectPlayersViewController.m */; };
 		D824A5F31CA49EA500AF6801 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = D824A5F21CA49EA500AF6801 /* Player.m */; };
 		D8AA80BA1CA70AD800BFE2B9 /* GameBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8AA80B91CA70AD800BFE2B9 /* GameBoardViewController.m */; };
+		D8AA80BD1CA7527A00BFE2B9 /* Dice.m in Sources */ = {isa = PBXBuildFile; fileRef = D8AA80BC1CA7527A00BFE2B9 /* Dice.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,8 @@
 		D824A5F21CA49EA500AF6801 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		D8AA80B81CA70AD800BFE2B9 /* GameBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameBoardViewController.h; sourceTree = "<group>"; };
 		D8AA80B91CA70AD800BFE2B9 /* GameBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameBoardViewController.m; sourceTree = "<group>"; };
+		D8AA80BB1CA7527A00BFE2B9 /* Dice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dice.h; sourceTree = "<group>"; };
+		D8AA80BC1CA7527A00BFE2B9 /* Dice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dice.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +81,8 @@
 				D824A5F21CA49EA500AF6801 /* Player.m */,
 				D8AA80B81CA70AD800BFE2B9 /* GameBoardViewController.h */,
 				D8AA80B91CA70AD800BFE2B9 /* GameBoardViewController.m */,
+				D8AA80BB1CA7527A00BFE2B9 /* Dice.h */,
+				D8AA80BC1CA7527A00BFE2B9 /* Dice.m */,
 				D824A5E31CA4940C00AF6801 /* Assets.xcassets */,
 				D824A5E51CA4940C00AF6801 /* LaunchScreen.storyboard */,
 				D824A5E81CA4940C00AF6801 /* Info.plist */,
@@ -168,6 +173,7 @@
 				D824A5F31CA49EA500AF6801 /* Player.m in Sources */,
 				D8AA80BA1CA70AD800BFE2B9 /* GameBoardViewController.m in Sources */,
 				D824A5DC1CA4940C00AF6801 /* AppDelegate.m in Sources */,
+				D8AA80BD1CA7527A00BFE2B9 /* Dice.m in Sources */,
 				D824A5D91CA4940C00AF6801 /* main.m in Sources */,
 				D824A5F01CA49AF900AF6801 /* SelectPlayersViewController.m in Sources */,
 			);
